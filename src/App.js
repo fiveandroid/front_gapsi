@@ -6,6 +6,20 @@ function App() {
 
 
   const [providerList, setProviderList] = useState()
+  const [userCurrent, setUserCurrent] = useState()
+
+  const getUser = async () => {
+    let data = await fetch('http://localhost:8080/users/10'
+    )
+    
+    data = await data.json()
+    
+    console.log( data )
+     
+    console.log( data.data.user )
+    setUserCurrent(data.data.user)
+    
+  }
 
   const getProviders = async () => {
     let data = await fetch('http://localhost:8080/providers'
@@ -49,7 +63,7 @@ function App() {
  
 
   useEffect(() => {
-   
+    getUser()
   }, [providerList])
 
   return (
@@ -62,7 +76,12 @@ function App() {
             <a className="navbar-brand">e-Commerce Gapsi</a>
             <div className="d-flex">
               
-                <button className="btn btn-outline-success" type="button">Search</button>
+                
+                <div id="avatar-image">
+                  <img  width="45" height="45" src={userCurrent[0].avatar}/>
+                  
+                
+                </div>
             </div>
           </div>
         </nav>
@@ -73,7 +92,7 @@ function App() {
             <div className='row'>
               <img src="http://www.gapsi.com.mx/img/logo.png" alt="" />
 
-              <p>Bienvenido Candidato 01</p>
+              <p>Bienvenido {userCurrent[0].name} {userCurrent[0].lastname}</p>
 
               <button className="btn btn-primary" type="button" onClick={clickHandler}>Continuar</button>
             </div>
