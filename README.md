@@ -1,4 +1,4 @@
-# Font Gapsi
+# Front Gapsi
 
 
 Despues de clonar el proyecto dentro de la carpeta test_front ejecutar el siguiente comando
